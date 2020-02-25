@@ -1,0 +1,7 @@
+FROM tensorflow/tensorflow:1.8.0-devel-py3
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+RUN mkdir /model
+WORKDIR /model
+COPY requirements.txt /model/
+RUN pip install --no-cache-dir  -r requirements.txt && rm -rf /var/lib/apt/lists/*
+COPY . /model/

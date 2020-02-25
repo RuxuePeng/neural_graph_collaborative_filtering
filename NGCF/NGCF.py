@@ -6,6 +6,7 @@ Wang Xiang et al. Neural Graph Collaborative Filtering. In SIGIR 2019.
 @author: Xiang Wang (xiangwang@u.nus.edu)
 """
 import tensorflow as tf
+from tensorflow.python.client import device_lib
 import os
 import sys
 
@@ -362,6 +363,11 @@ def load_pretrained_data():
 
 if __name__ == "__main__":
     os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
+    print(
+        "GPU(s) available: {}".format(
+            [x.name for x in device_lib.list_local_devices() if x.device_type == "GPU"]
+        )
+    )
 
     config = dict()
     config["n_users"] = data_generator.n_users
